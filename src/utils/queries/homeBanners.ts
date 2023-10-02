@@ -1,10 +1,20 @@
 import { useStaticQuery, graphql } from 'gatsby';
-import { ImageFragment } from '../Fragments';
-
+import { ImageFragment, ImageProps } from '../Fragments';
+export interface HomeBannerProps {
+  node: {
+    title: string
+    description: string
+    desktop: ImageProps
+    tablet: ImageProps
+    mobile: ImageProps
+  }
+  mirror?: boolean
+  linkText?: string
+}
 export const getHomeBanners = () => {
   const homeBannerData = useStaticQuery(graphql`
       query HomeBannerQuery {
-        allContentfulHome {
+        allContentfulHome(sort: {createdAt: ASC}) {
           edges {
             node {
               title
@@ -23,5 +33,6 @@ export const getHomeBanners = () => {
         }
       }
     `);
-  return homeBannerData
+  return homeBannerData.allContentfulHome.edges
 }
+

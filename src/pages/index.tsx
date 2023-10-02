@@ -1,12 +1,12 @@
 import * as React from 'react'
 import Layout from '../components/Layout'
-
+import HomeScreen from '../components/Screens/HomeScreen'
 import '../styles/base.css'
 
 const IndexPage = () => {
   return (
     <Layout>
-      <h1>index</h1>
+      <HomeScreen />
     </Layout>
   )
 }
