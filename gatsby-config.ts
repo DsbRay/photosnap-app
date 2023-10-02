@@ -13,7 +13,7 @@ const config: GatsbyConfig = {
     resolve: 'gatsby-source-contentful',
     options: {
       "accessToken": "y4O6d3nKM8RGJTR8DJcNRfac0HkdSSbMQWNo9G02n-0",
-      "spaceId": ""
+      "spaceId": "j7cyikywvw8r"
     }
   }, "gatsby-plugin-image", "gatsby-plugin-sharp", "gatsby-transformer-sharp", "gatsby-plugin-styled-components", {
     resolve: 'gatsby-source-filesystem',
