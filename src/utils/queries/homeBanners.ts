@@ -1,6 +1,6 @@
 import { useStaticQuery, graphql } from 'gatsby';
 import { ImageFragment, ImageProps } from '../Fragments';
-export interface HomeBannerProps {
+export interface BannerProps {
   node: {
     title: string
     description: string
@@ -11,6 +11,7 @@ export interface HomeBannerProps {
   mirror?: boolean
   linkText?: string
 }
+
 export const getHomeBanners = () => {
   const homeBannerData = useStaticQuery(graphql`
       query HomeBannerQuery {

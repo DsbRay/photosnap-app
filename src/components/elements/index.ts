@@ -2,4 +2,5 @@
 export { default as Logo } from './logo';
 export { default as NavLink } from './NavLink';
 export { default as Button } from './Button';
-export { default as HomeBanner } from './HomeBanner';
+export { default as Banner } from './Banner';
+export { default as Features } from './Features';

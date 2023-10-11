@@ -1,10 +1,19 @@
 import { useStaticQuery, graphql } from "gatsby";
-import { ImageFragment } from '../Fragments';
+import { ImageFragment, ImageProps } from '../Fragments';
 
-export const getFeatures = () => {
+export interface FeaturedProps {
+  node: {
+    title: string
+    description: string
+    icon: ImageProps
+    isFeatured: boolean
+  }
+}
+
+export const getFeatures = (featured?: boolean) => {
   const features = useStaticQuery(graphql`
     query FeaturesQuery {
-      allContentfulFeatures {
+      allContentfulFeatures(sort: {createdAt: ASC}) {
         edges {
           node {
             title
@@ -18,5 +27,12 @@ export const getFeatures = () => {
       }
     }
   `);
-  return features
+
+  const allContentfulFeatures = features.allContentfulFeatures.edges
+
+  if (featured) {
+    const featuredItems = allContentfulFeatures.filter(({ node }: FeaturedProps) => node.isFeatured);
+    return featuredItems
+  }
+  return allContentfulFeatures
 }

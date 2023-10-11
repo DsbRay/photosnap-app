@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import { HomeBannerProps } from '../../utils/queries/homeBanners'
+import { BannerProps } from '../../utils/queries/homeBanners'
 import ArrowLink from './ArrowLink'
 
-const HomeBanner: React.FC<HomeBannerProps> = ({ node, mirror, linkText }) => {
+const Banner: React.FC<BannerProps> = ({ node, mirror, linkText }) => {
   const { title, description, desktop, tablet, mobile } = node
   return (
     <Container className={mirror ? 'mirror' : ''}>
@@ -12,7 +12,12 @@ const HomeBanner: React.FC<HomeBannerProps> = ({ node, mirror, linkText }) => {
         <p>{description}</p>
         {linkText && <ArrowLink title={linkText} color={mirror ? '#000' : '#fff'} url='/stories' />}
       </div>
-      <Banner className='mobile' bannersm={mobile.file.url} bannermd={tablet.file.url} bannerlg={desktop.file.url} />
+      <BannerContainer
+        className='mobile'
+        bannersm={mobile.file.url}
+        bannermd={tablet.file.url}
+        bannerlg={desktop.file.url}
+      />
     </Container>
   )
 }
@@ -60,7 +65,7 @@ const Container = styled.div`
     }
   }
 `
-const Banner = styled.div<{ bannersm: string; bannermd: string; bannerlg: string }>`
+const BannerContainer = styled.div<{ bannersm: string; bannermd: string; bannerlg: string }>`
   background-image: ${(props) => `url(${props.bannersm})`};
   background-size: cover;
   background-repeat: no-repeat;
@@ -70,6 +75,7 @@ const Banner = styled.div<{ bannersm: string; bannermd: string; bannerlg: string
   min-height: 271px;
   min-width: 100vw;
   overflow: hidden;
+  animation: scaleAnimation 10s infinite alternate;
   @media (min-width: 768px) {
     min-width: auto;
     background-image: ${(props) => `url(${props.bannermd})`};
@@ -77,6 +83,17 @@ const Banner = styled.div<{ bannersm: string; bannermd: string; bannerlg: string
   @media (min-width: 1200px) {
     background-image: ${(props) => `url(${props.bannerlg})`};
   }
+  @keyframes scaleAnimation {
+    0% {
+      background-size: 100%;
+    }
+    50% {
+      background-size: 110%;
+    }
+    100% {
+      background-size: 100%;
+    }
+  }
 `
 
-export default HomeBanner
+export default Banner
