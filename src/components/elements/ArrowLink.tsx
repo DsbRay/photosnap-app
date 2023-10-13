@@ -8,12 +8,13 @@ interface LinkProps {
   title?: string
   url: string
   color?: string
+  className?: string
 }
 
-const ArrowLink: React.FC<LinkProps> = ({ title, url, color }) => {
+const ArrowLink: React.FC<LinkProps> = ({ title, url, color, className }) => {
   const icon = color === '#000' ? arrowIconBlack : arrowIconWhite
   return (
-    <ButtonContainer to={url} color={color}>
+    <ButtonContainer to={url} color={color} className={className}>
       {title}
       <img src={icon} />
     </ButtonContainer>
@@ -26,6 +27,9 @@ const ButtonContainer = styled(Link)<{ color: string }>`
   gap: 15px;
   align-items: center;
   transition: opacity 0.25s ease-in-out;
+  &.flex {
+    justify-content: space-between;
+  }
   &:hover {
     opacity: 0.7;
     cursor: pointer;
